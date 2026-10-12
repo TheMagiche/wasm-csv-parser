@@ -1,0 +1,13 @@
+{
+  "name": "@papa-wasm/bench",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "node src/run.mjs"
+  },
+  "dependencies": {
+    "papaparse": "5.7.0",
+    "papa-wasm": "workspace:*"
+  }
+}

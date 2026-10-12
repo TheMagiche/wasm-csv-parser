@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Outfit", "Avenir Next", sans-serif;
+  --color-paper: #f3ecdf;
+  --color-ink: #1f1a14;
+  --color-clay: #c4552a;
+  --color-card: #fffaf3;
+  --color-line: #e4d5c0;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 500px at 10% -10%, #f8e2c8 0%, transparent 55%),
+    var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}

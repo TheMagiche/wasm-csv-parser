@@ -1,0 +1,14 @@
+[workspace]
+members = ["crates/csv-engine"]
+exclude = ["crates/csv-engine/fuzz"]
+resolver = "2"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = "symbols"
+
+[profile.release.package.csv-engine]
+opt-level = "z"
