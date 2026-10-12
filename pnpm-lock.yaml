@@ -29,9 +29,9 @@ importers:
       lucide-react:
         specifier: ^1.55.0
         version: 1.55.0(@types/react@19.3.0)(react@19.3.0)
-      papa-wasm:
+      wasm-csv-parser:
         specifier: workspace:*
-        version: link:../../packages/papa-wasm
+        version: link:../../packages/wasm-csv-parser
       papaparse:
         specifier: 5.7.0
         version: 5.7.0
@@ -87,14 +87,14 @@ importers:
 
   packages/bench:
     dependencies:
-      papa-wasm:
+      wasm-csv-parser:
         specifier: workspace:*
-        version: link:../papa-wasm
+        version: link:../wasm-csv-parser
       papaparse:
         specifier: 5.7.0
         version: 5.7.0
 
-  packages/papa-wasm:
+  packages/wasm-csv-parser:
     devDependencies:
       '@types/papaparse':
         specifier: ^5.3.16

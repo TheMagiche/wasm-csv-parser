@@ -43,7 +43,7 @@ export type DynamicTyping =
   | ((field: string | number) => boolean);
 
 /**
- * Papa Parse config supported by papa-wasm.
+ * Papa Parse config supported by wasm-csv-parser.
  * Any other key throws `Unsupported Papa Parse option: <name>`.
  */
 export interface ParseConfig<T = unknown> {

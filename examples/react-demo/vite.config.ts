@@ -11,7 +11,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    exclude: ["papa-wasm"],
+    exclude: ["wasm-csv-parser"],
   },
   server: {
     host: "127.0.0.1",

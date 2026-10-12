@@ -26,6 +26,6 @@ jobs:
       - run: cargo clippy --all-targets -- -D warnings
       - run: cargo test
       - run: pnpm install
-      - run: pnpm --filter papa-wasm build
-      - run: pnpm --filter papa-wasm test
-      - run: pnpm --filter papa-wasm size
+      - run: pnpm --filter wasm-csv-parser build
+      - run: pnpm --filter wasm-csv-parser test
+      - run: pnpm --filter wasm-csv-parser size

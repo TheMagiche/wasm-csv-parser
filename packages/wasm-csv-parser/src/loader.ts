@@ -3,7 +3,7 @@ import initWasm, {
   parse_bytes,
   WasmStream,
   type RawOutput,
-} from "../pkg/papa-wasm.js";
+} from "../pkg/wasm-csv-parser.js";
 
 export { parse_bytes, WasmStream, type RawOutput };
 
@@ -26,9 +26,9 @@ function isNode(): boolean {
 
 function wasmCandidates(): URL[] {
   return [
-    new URL("./papa-wasm_bg.wasm", import.meta.url),
-    new URL("../papa-wasm_bg.wasm", import.meta.url),
-    new URL("../pkg/papa-wasm_bg.wasm", import.meta.url),
+    new URL("./wasm-csv-parser_bg.wasm", import.meta.url),
+    new URL("../wasm-csv-parser_bg.wasm", import.meta.url),
+    new URL("../pkg/wasm-csv-parser_bg.wasm", import.meta.url),
   ];
 }
 
@@ -44,7 +44,7 @@ interface NodeUrl {
 function nodeBuiltin<T>(name: string): T {
   const builtin = nodeProcess()?.getBuiltinModule?.(name) as T | undefined;
   if (!builtin) {
-    throw new Error(`papa-wasm: Node builtin ${name} is unavailable`);
+    throw new Error(`wasm-csv-parser: Node builtin ${name} is unavailable`);
   }
   return builtin;
 }
@@ -57,7 +57,7 @@ function readWasmFile(): Uint8Array {
     if (fs.existsSync(path)) return fs.readFileSync(path);
   }
   throw new Error(
-    "papa-wasm: could not find papa-wasm_bg.wasm. Run the wasm build first.",
+    "wasm-csv-parser: could not find wasm-csv-parser_bg.wasm. Run the wasm build first.",
   );
 }
 
@@ -70,7 +70,7 @@ function readWasmFile(): Uint8Array {
  * `WebAssembly.instantiateStreaming` first and falls back when the server
  * does not send `application/wasm`.
  *
- * @param wasmUrl URL of `papa-wasm_bg.wasm` when it is hosted apart from the bundle.
+ * @param wasmUrl URL of `wasm-csv-parser_bg.wasm` when it is hosted apart from the bundle.
  */
 export async function init(wasmUrl?: string): Promise<void> {
   if (ready) return;
@@ -106,7 +106,7 @@ export function ensureSync(): void {
   if (ready) return;
   if (!isNode()) {
     throw new Error(
-      "papa-wasm: call await init() before parse() in the browser. parseAsync() loads the module itself.",
+      "wasm-csv-parser: call await init() before parse() in the browser. parseAsync() loads the module itself.",
     );
   }
   cached = readWasmFile();
@@ -117,7 +117,7 @@ export function ensureSync(): void {
 /** Bytes of the compiled module, for transferring into a worker. */
 export function wasmBytes(): Uint8Array {
   if (!cached) ensureSync();
-  if (!cached) throw new Error("papa-wasm: wasm is not loaded");
+  if (!cached) throw new Error("wasm-csv-parser: wasm is not loaded");
   return cached;
 }
 

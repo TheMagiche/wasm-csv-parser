@@ -1,13 +1,13 @@
 {
-  "name": "papa-wasm-workspace",
+  "name": "wasm-csv-parser-workspace",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@10.33.4",
   "scripts": {
-    "build": "pnpm --filter papa-wasm build",
-    "test": "pnpm --filter papa-wasm test",
-    "size": "pnpm --filter papa-wasm size",
-    "bench": "pnpm --filter @papa-wasm/bench start",
+    "build": "pnpm --filter wasm-csv-parser build",
+    "test": "pnpm --filter wasm-csv-parser test",
+    "size": "pnpm --filter wasm-csv-parser size",
+    "bench": "pnpm --filter @wasm-csv-parser/bench start",
     "demo": "pnpm --filter react-demo dev"
   },
   "devDependencies": {

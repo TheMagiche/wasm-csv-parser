@@ -2,11 +2,11 @@
 
 Single machine, Node v22.14.0, median of a few runs. Input is generated and not committed. 100 MB and 500 MB were not run here: the result table, not the wasm module, is what uses RAM, and this machine had about 4 GB free. Raise the sizes in `packages/bench/src/run.mjs` to measure them.
 
-`papa-wasm` times include JavaScript post-processing (headers, dynamic typing) so the comparison matches `Papa.parse`. `flat buffer` is the raw wasm return before strings are built for the whole table. `js arrays` builds `string[][]` inside wasm with `js_sys`.
+`wasm-csv-parser` times include JavaScript post-processing (headers, dynamic typing) so the comparison matches `Papa.parse`. `flat buffer` is the raw wasm return before strings are built for the whole table. `js arrays` builds `string[][]` inside wasm with `js_sys`.
 
 The flat buffer is the production path. Building arrays inside wasm was slower on these runs because each cell still becomes a JavaScript string, plus the extra copies through the externref table, so that export was removed. The TypeScript decoder keeps ASCII input as one `TextDecoder` string and slices it. String inputs are often slower than Papa Parse at these sizes: `parse()` UTF-8-encodes the JavaScript string and then builds the same string table Papa builds. The flat-buffer column is the scanner without that rebuild. On the 10 MB narrow unquoted file the scanner took 54 ms and Papa Parse took 137 ms. The full `parse()` call took 224 ms. Wide unquoted files with `header: false` are the weakest case, because Papa's fast mode is already a split.
 
-| Case | Papa ms | papa-wasm ms | MB/s | vs Papa | flat buffer ms | js arrays ms |
+| Case | Papa ms | wasm-csv-parser ms | MB/s | vs Papa | flat buffer ms | js arrays ms |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | 1 MB, narrow, unquoted, header false | 15 | 23 | 44 | 0.66× | 8 | 32 |
 | 1 MB, narrow, unquoted, header true | 19 | 20 | 50 | 0.98× | 8 | 32 |

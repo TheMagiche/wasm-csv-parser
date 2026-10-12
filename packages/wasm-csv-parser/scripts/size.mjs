@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { brotliCompressSync, gzipSync } from "node:zlib";
 
-const buf = readFileSync(new URL("../pkg/papa-wasm_bg.wasm", import.meta.url));
+const buf = readFileSync(new URL("../pkg/wasm-csv-parser_bg.wasm", import.meta.url));
 const report = {
   raw: buf.length,
   gzip: gzipSync(buf).length,

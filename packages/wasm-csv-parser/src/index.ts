@@ -74,12 +74,12 @@ export function parse<T = unknown>(
   config?: ParseConfig<T>,
 ): ParseResult<T> | undefined {
   if (typeof input !== "string") {
-    throw new Error("papa-wasm: File and Blob inputs need parseAsync().");
+    throw new Error("wasm-csv-parser: File and Blob inputs need parseAsync().");
   }
   assertSupportedConfig(config);
   if (config?.worker) {
     throw new Error(
-      "papa-wasm: worker: true needs parseAsync(). parse() stays synchronous.",
+      "wasm-csv-parser: worker: true needs parseAsync(). parse() stays synchronous.",
     );
   }
   ensureSync();
@@ -133,7 +133,7 @@ export async function parseAsync<T = unknown>(
       return await parseWithWorker(input, config);
     } catch (error) {
       console.warn(
-        "papa-wasm: worker unavailable, parsing on this thread.",
+        "wasm-csv-parser: worker unavailable, parsing on this thread.",
         error,
       );
     }

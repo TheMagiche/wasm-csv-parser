@@ -1,5 +1,5 @@
 {
-  "name": "@papa-wasm/bench",
+  "name": "@wasm-csv-parser/bench",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -8,6 +8,6 @@
   },
   "dependencies": {
     "papaparse": "5.7.0",
-    "papa-wasm": "workspace:*"
+    "wasm-csv-parser": "workspace:*"
   }
 }

@@ -7,7 +7,7 @@ dist/
 *.log
 fixtures/generated/
 packages/bench/generated/
-packages/papa-wasm/pkg/
+packages/wasm-csv-parser/pkg/
 .turbo/
 .vite/
 coverage/

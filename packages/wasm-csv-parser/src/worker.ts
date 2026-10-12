@@ -3,7 +3,7 @@
  * Header objects and dynamic typing stay on the caller side.
  */
 import { decodeOutput } from "./decode";
-import { initSync, parse_bytes } from "../pkg/papa-wasm.js";
+import { initSync, parse_bytes } from "../pkg/wasm-csv-parser.js";
 import type { WasmScalars } from "./config";
 
 interface Oneshoot {

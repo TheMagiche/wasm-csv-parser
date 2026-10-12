@@ -1,9 +1,9 @@
-# papa-wasm demo
+# wasm-csv-parser demo
 
 File drop, worker progress, and a timing comparison against Papa Parse.
 
 ```sh
-pnpm --filter papa-wasm build
+pnpm --filter wasm-csv-parser build
 pnpm --filter react-demo dev
 ```
 

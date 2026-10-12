@@ -1,9 +1,9 @@
-# papa-wasm
+# wasm-csv-parser
 
 A Papa Parse-compatible CSV parser. The scanner is Rust, compiled to WebAssembly. Header rows, dynamic typing, and `skipEmptyLines` stay in TypeScript so `parseFloat` and `Date` match JavaScript.
 
 ```ts
-import { init, parse, parseAsync } from "papa-wasm";
+import { init, parse, parseAsync } from "wasm-csv-parser";
 
 await init();
 const rows = parse(csv, { header: true, dynamicTyping: true });
@@ -13,7 +13,7 @@ const big = await parseAsync(file, { header: true, worker: true });
 React:
 
 ```tsx
-import { usePapaWasm } from "papa-wasm/react";
+import { usePapaWasm } from "wasm-csv-parser/react";
 
 const { parse, data, progress, status, abort } = usePapaWasm({ header: true });
 ```
@@ -30,7 +30,7 @@ const result = Papa.parse(csv, { header: true });
 becomes
 
 ```ts
-import { parse } from "papa-wasm";
+import { parse } from "wasm-csv-parser";
 const result = parse(csv, { header: true });
 ```
 
@@ -57,12 +57,12 @@ A second wasm export that built `string[][]` with `js_sys` was slower on every c
 
 Full table, including the cases that lose: [`packages/bench/RESULTS.md`](packages/bench/RESULTS.md). 100 MB and 500 MB were not measured in this environment. Generate them with `pnpm bench` after raising the sizes in `packages/bench/src/run.mjs`.
 
-Current release build: 53,321 bytes raw, 24,049 gzip, 20,612 brotli. `pnpm --filter papa-wasm size` prints the same check and fails if gzip reaches 100 KB.
+Current release build: 53,321 bytes raw, 24,049 gzip, 20,612 brotli. `pnpm --filter wasm-csv-parser size` prints the same check and fails if gzip reaches 100 KB.
 
 ## Layout
 
 - `crates/csv-engine` — Rust scanner, no JavaScript dependency. Hand-written, not `csv-core`, because Papa's quote recovery and fast-mode preview cursor are not RFC 4180.
-- `packages/papa-wasm` — TypeScript package. Exports `.`, `./react`, `./worker`, and `./papa-wasm_bg.wasm`.
+- `packages/wasm-csv-parser` — TypeScript package. Exports `.`, `./react`, `./worker`, and `./wasm-csv-parser_bg.wasm`.
 - `packages/bench` — Node timings against Papa Parse.
 - `examples/react-demo` — file drop, progress, and a timing comparison.
 - `fixtures` — small CSV files. Large benchmark files are generated, not committed.
@@ -74,8 +74,8 @@ Rust stable, Node 22, and pnpm 10.
 ```sh
 cargo test
 pnpm install
-pnpm --filter papa-wasm build
-pnpm --filter papa-wasm test
+pnpm --filter wasm-csv-parser build
+pnpm --filter wasm-csv-parser test
 pnpm --filter react-demo dev
 ```
 
@@ -85,4 +85,4 @@ The demo listens on [http://127.0.0.1:43123](http://127.0.0.1:43123).
 
 ## Publish
 
-Versions are tracked with Changesets. This repo does not publish on its own. After `npx changeset` and `npx changeset version`, publish with `npm publish -w papa-wasm` from a machine that has an npm token. The wasm binary is produced by `pnpm --filter papa-wasm build` and is part of the package (`pkg/papa-wasm_bg.wasm`).
+Versions are tracked with Changesets. This repo does not publish on its own. After `npx changeset` and `npx changeset version`, publish with `npm publish -w wasm-csv-parser` from a machine that has an npm token. The wasm binary is produced by `pnpm --filter wasm-csv-parser build` and is part of the package (`pkg/wasm-csv-parser_bg.wasm`).

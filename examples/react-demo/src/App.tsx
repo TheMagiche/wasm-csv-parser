@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import Papa from "papaparse";
-import { init, parse, usePapaWasm } from "papa-wasm/react";
-import wasmUrl from "../../../packages/papa-wasm/pkg/papa-wasm_bg.wasm?url";
+import { init, parse, usePapaWasm } from "wasm-csv-parser/react";
+import wasmUrl from "../../../packages/wasm-csv-parser/pkg/wasm-csv-parser_bg.wasm?url";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -98,7 +98,7 @@ export default function App() {
     <main className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8 sm:px-6">
       <header className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-medium uppercase tracking-[0.18em] text-[#8a5a3a]">papa-wasm</p>
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-[#8a5a3a]">wasm-csv-parser</p>
           <h1 className="font-serif text-4xl leading-tight sm:text-5xl">Parse CSV without freezing the page.</h1>
         </div>
         <p className="max-w-sm text-sm text-[#5c5146]">
@@ -169,16 +169,16 @@ export default function App() {
           <CardContent className="flex flex-col gap-4">
             {timings ? (
               <>
-                <TimingBar label="papa-wasm" ms={timings.wasmMs} max={Math.max(timings.wasmMs, timings.papaMs)} />
+                <TimingBar label="wasm-csv-parser" ms={timings.wasmMs} max={Math.max(timings.wasmMs, timings.papaMs)} />
                 <TimingBar label="Papa Parse" ms={timings.papaMs} max={Math.max(timings.wasmMs, timings.papaMs)} muted />
                 <p className="text-sm text-[#5c5146]">
                   {faster && faster >= 1
-                    ? `papa-wasm was ${faster.toFixed(2)}× the speed of Papa Parse on this input.`
+                    ? `wasm-csv-parser was ${faster.toFixed(2)}× the speed of Papa Parse on this input.`
                     : faster
-                      ? `Papa Parse was ${(1 / faster).toFixed(2)}× the speed of papa-wasm on this input.`
+                      ? `Papa Parse was ${(1 / faster).toFixed(2)}× the speed of wasm-csv-parser on this input.`
                       : "Not enough time elapsed to compare."}
                   {" "}
-                  {(timings.bytes / 1024 / 1024 / (timings.wasmMs / 1000)).toFixed(1)} MB/s through papa-wasm.
+                  {(timings.bytes / 1024 / 1024 / (timings.wasmMs / 1000)).toFixed(1)} MB/s through wasm-csv-parser.
                   The worker parse fills the table. These bars are a second pass on the main thread so both parsers do the same work.
                 </p>
               </>

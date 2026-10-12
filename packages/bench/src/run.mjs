@@ -1,10 +1,10 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { performance } from "node:perf_hooks";
 import Papa from "papaparse";
-import { parse } from "papa-wasm";
-import { initSync, parse_bytes } from "../../papa-wasm/pkg/papa-wasm.js";
+import { parse } from "wasm-csv-parser";
+import { initSync, parse_bytes } from "../../wasm-csv-parser/pkg/wasm-csv-parser.js";
 
-const wasm = readFileSync(new URL("../../papa-wasm/pkg/papa-wasm_bg.wasm", import.meta.url));
+const wasm = readFileSync(new URL("../../wasm-csv-parser/pkg/wasm-csv-parser_bg.wasm", import.meta.url));
 initSync({ module: wasm });
 
 function csv(bytes, { columns, quoted }) {
@@ -94,7 +94,7 @@ for (const [sizeLabel, bytes, runs] of sizes) {
   }
 }
 
-const header = "| Case | Papa ms | papa-wasm ms | MB/s | vs Papa | flat buffer ms |";
+const header = "| Case | Papa ms | wasm-csv-parser ms | MB/s | vs Papa | flat buffer ms |";
 const line = "| --- | ---: | ---: | ---: | ---: | ---: |";
 const body = rows
   .map(
@@ -112,7 +112,7 @@ const md = `# Benchmark results
 
 Single machine, Node ${process.version}, median of a few runs. Input is generated and not committed. 100 MB and 500 MB were not run here: the result table, not the wasm module, is what uses RAM, and this machine had about 4 GB free. Raise the sizes in \`packages/bench/src/run.mjs\` to measure them.
 
-\`papa-wasm\` times include JavaScript post-processing (headers, dynamic typing) so the comparison matches \`Papa.parse\`. \`flat buffer\` is the raw wasm return before strings are built for the whole table.
+\`wasm-csv-parser\` times include JavaScript post-processing (headers, dynamic typing) so the comparison matches \`Papa.parse\`. \`flat buffer\` is the raw wasm return before strings are built for the whole table.
 
 The flat buffer is the production path. A \`js_sys\` array export was slower on every measured case (258 ms vs 54 ms flat on the 10 MB narrow unquoted file) and was removed. ASCII fields are decoded once in TypeScript and sliced.
 
