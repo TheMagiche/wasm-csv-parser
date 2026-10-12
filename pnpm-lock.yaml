@@ -29,9 +29,6 @@ importers:
       lucide-react:
         specifier: ^1.55.0
         version: 1.55.0(@types/react@19.3.0)(react@19.3.0)
-      wasm-csv-parser:
-        specifier: workspace:*
-        version: link:../../packages/wasm-csv-parser
       papaparse:
         specifier: 5.7.0
         version: 5.7.0
@@ -44,6 +41,9 @@ importers:
       tailwind-merge:
         specifier: ^3.7.0
         version: 3.7.0
+      wasm-csv-parser:
+        specifier: workspace:*
+        version: link:../../packages/wasm-csv-parser
     devDependencies:
       '@eslint/js':
         specifier: ^9.25.0
@@ -51,6 +51,9 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.3.3
         version: 4.3.3(vite@6.4.4(@types/node@26.6.5)(jiti@2.7.0)(lightningcss@1.32.0))
+      '@types/papaparse':
+        specifier: 5.3.16
+        version: 5.3.16
       '@types/react':
         specifier: ^19.1.2
         version: 19.3.0
@@ -87,12 +90,12 @@ importers:
 
   packages/bench:
     dependencies:
-      wasm-csv-parser:
-        specifier: workspace:*
-        version: link:../wasm-csv-parser
       papaparse:
         specifier: 5.7.0
         version: 5.7.0
+      wasm-csv-parser:
+        specifier: workspace:*
+        version: link:../wasm-csv-parser
 
   packages/wasm-csv-parser:
     devDependencies:
@@ -949,6 +952,9 @@ packages:
 
   '@types/node@26.6.5':
     resolution: {integrity: sha512-uMzsv9stDdofIZBx4UGh4Z9ZgXnGC9seRDscilBcTHAeOFk67MZg/k9bWVfO+bk4qZmG+l52hRnLwUiH2LnJTg==}
+
+  '@types/papaparse@5.3.16':
+    resolution: {integrity: sha512-T3VuKMC2H0lgsjI9buTB3uuKj3EMD2eap1MOuEQuBQ44EnDx/IkGhU6EwiTf9zG3za4SKlmwKAImdDKdNnCsXg==}
 
   '@types/papaparse@5.5.2':
     resolution: {integrity: sha512-gFnFp/JMzLHCwRf7tQHrNnfhN4eYBVYYI897CGX4MY1tzY9l2aLkVyx2IlKZ/SAqDbB3I1AOZW5gTMGGsqWliA==}
@@ -2536,6 +2542,10 @@ snapshots:
   '@types/node@26.6.5':
     dependencies:
       undici-types: 8.9.0
+
+  '@types/papaparse@5.3.16':
+    dependencies:
+      '@types/node': 26.6.5
 
   '@types/papaparse@5.5.2':
     dependencies:

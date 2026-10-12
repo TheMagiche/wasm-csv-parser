@@ -18,7 +18,7 @@ import { usePapaWasm } from "wasm-csv-parser/react";
 const { parse, data, progress, status, abort } = usePapaWasm({ header: true });
 ```
 
-The demo app is in `examples/react-demo`. It runs the parse in a worker and times the same file against Papa Parse.
+The demo app is in `examples/react-demo`. It runs the parse in a worker and times the same file against Papa Parse. The hosted build is [themagiche.github.io/wasm-csv-parser](https://themagiche.github.io/wasm-csv-parser/).
 
 ## Migrate from Papa Parse
 

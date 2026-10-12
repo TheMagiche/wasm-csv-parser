@@ -15,15 +15,16 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.55.0",
-    "wasm-csv-parser": "workspace:*",
     "papaparse": "5.7.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "tailwind-merge": "^3.7.0"
+    "tailwind-merge": "^3.7.0",
+    "wasm-csv-parser": "workspace:*"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
     "@tailwindcss/vite": "^4.3.3",
+    "@types/papaparse": "5.3.16",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",
